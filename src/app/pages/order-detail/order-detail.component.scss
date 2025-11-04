@@ -1,3 +1,197 @@
 .page-container {
   padding: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+::ng-deep .ant-page-header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.actions {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 按钮样式 */
+::ng-deep .ant-btn-primary {
+  background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+::ng-deep .ant-btn-primary:hover {
+  background: linear-gradient(45deg, #FF5252, #FF7B42);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+  transform: translateY(-1px);
+}
+
+::ng-deep .ant-btn-default {
+  background: linear-gradient(45deg, #4ECDC4, #44A08D);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+}
+
+::ng-deep .ant-btn-default:hover {
+  background: linear-gradient(45deg, #3DB8B0, #358F7D);
+  color: white;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+  transform: translateY(-1px);
+}
+
+::ng-deep .ant-btn-dashed {
+  background: linear-gradient(45deg, #FFA726, #FF9800);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 167, 38, 0.3);
+}
+
+::ng-deep .ant-btn-dashed:hover {
+  background: linear-gradient(45deg, #FF9800, #F57C00);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 167, 38, 0.4);
+  transform: translateY(-1px);
+}
+
+/* 描述列表样式 */
+::ng-deep .ant-descriptions {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+::ng-deep .ant-descriptions-title {
+  color: #5D4037;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px 20px;
+  background: linear-gradient(45deg, #E3F2FD, #F3E5F5);
+  margin: 0 !important;
+}
+
+::ng-deep .ant-descriptions-view {
+  border: none !important;
+}
+
+::ng-deep .ant-descriptions-row > td {
+  padding: 12px 20px !important;
+  border-bottom: 1px solid #E8EAF6 !important;
+}
+
+::ng-deep .ant-descriptions-item-label {
+  background: linear-gradient(45deg, #F5F5F5, #EEEEEE) !important;
+  font-weight: 600;
+  color: #5D4037 !important;
+  border-right: 3px solid #7986CB !important;
+}
+
+::ng-deep .ant-descriptions-item-content {
+  background: white !important;
+  color: #37474F !important;
+  font-weight: 500;
+}
+
+/* 标签样式 */
+::ng-deep .ant-tag {
+  border: none;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .ant-tag-processing {
+  background: linear-gradient(45deg, #2196F3, #21CBF3) !important;
+}
+
+::ng-deep .ant-tag-success {
+  background: linear-gradient(45deg, #4CAF50, #8BC34A) !important;
+}
+
+::ng-deep .ant-tag-error {
+  background: linear-gradient(45deg, #F44336, #FF5252) !important;
+}
+
+::ng-deep .ant-tag-warning {
+  background: linear-gradient(45deg, #FF9800, #FFB74D) !important;
+}
+
+::ng-deep .ant-tag-geekblue {
+  background: linear-gradient(45deg, #3F51B5, #7986CB) !important;
+}
+
+::ng-deep .ant-tag-magenta {
+  background: linear-gradient(45deg, #E91E63, #F48FB1) !important;
+}
+
+::ng-deep .ant-tag-default {
+  background: linear-gradient(45deg, #9E9E9E, #BDBDBD) !important;
+}
+
+/* 链接样式 */
+a {
+  color: #7986CB;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(121, 134, 203, 0.1);
+}
+
+a:hover {
+  color: #5C6BC0;
+  background: rgba(121, 134, 203, 0.2);
+  text-decoration: none;
+}
+
+/* 加载状态 */
+:host ::ng-deep .ant-spin {
+  color: #7986CB;
+}
+
+/* JSON 预览样式 */
+pre {
+  background: linear-gradient(45deg, #F5F5F5, #EEEEEE);
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 4px solid #7986CB;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 12px;
+  color: #37474F;
+  max-height: 200px;
+  overflow: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 12px;
+  }
+  
+  .actions {
+    padding: 12px;
+  }
+  
+  ::ng-deep .ant-descriptions-row > td {
+    padding: 8px 12px !important;
+  }
 }
