@@ -1,16 +1,17 @@
 <div class="page-container" *ngIf="order$ | async as order; else loading">
-  <nz-page-header nzBackIcon [nzGhost]="false" nzTitle="订单详情" [nzSubtitle]="order.orderNumber">
+  <nz-page-header nzBackIcon [nzGhost]="false" nzTitle="📄 订单详情" [nzSubtitle]="order.orderNumber">
     <nz-page-header-extra>
-      <a routerLink="/orders">📋 返回列表</a>
+      <a routerLink="/orders">
+        <span nz-icon nzType="unordered-list" style="margin-right: 4px;"></span>
+        返回列表
+      </a>
     </nz-page-header-extra>
     <nz-page-header-content>
-      <div class="header-content">
-        <div class="order-badge">
-          <nz-tag [nzColor]="getStatusColor(order.status)" style="font-size: 14px; padding: 4px 12px;">
-            {{ order.status | titlecase }}
-            <nz-spin *ngIf="order.status === 'TICKETING_IN_PROGRESS'" nzSimple [nzSize]="'small'" style="margin-left: 8px;"></nz-spin>
-          </nz-tag>
-        </div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+        <nz-tag [nzColor]="getStatusColor(order.status)" style="font-size: 14px; padding: 6px 16px;">
+          {{ order.status | titlecase }}
+        </nz-tag>
+        <nz-spin *ngIf="order.status === 'TICKETING_IN_PROGRESS'" nzSimple [nzSize]="'small'"></nz-spin>
       </div>
     </nz-page-header-content>
   </nz-page-header>
@@ -20,34 +21,35 @@
     <div class="action-buttons">
       <!-- 支付按钮 -->
       <button *ngIf="order.status === 'PENDING_PAYMENT'" nz-button nzType="primary" (click)="onPay(order.id)" [nzLoading]="isLoading">
-        <span nz-icon nzType="dollar" style="margin-right: 4px;"></span>
+        <span nz-icon nzType="dollar" style="margin-right: 6px;"></span>
         💳 立即支付
       </button>
 
       <!-- 重试出票按钮 -->
       <button *ngIf="order.status === 'TICKETING_FAILED'" nz-button nzType="default" (click)="onRetry(order.id)" [nzLoading]="isLoading">
-        <span nz-icon nzType="redo" style="margin-right: 4px;"></span>
+        <span nz-icon nzType="redo" style="margin-right: 6px;"></span>
         🔄 重试出票
       </button>
 
       <!-- 取消按钮 -->
       <button *ngIf="order.status === 'PENDING_PAYMENT' || order.status === 'PAID' || order.status === 'TICKETING_FAILED'"
               nz-button nzType="dashed" nzDanger (click)="onCancel(order.id)" [nzLoading]="isLoading">
-        <span nz-icon nzType="close-circle" style="margin-right: 4px;"></span>
+        <span nz-icon nzType="close-circle" style="margin-right: 6px;"></span>
         ❌ 取消订单
       </button>
     </div>
   </div>
 
   <!-- 订单详情 -->
-  <nz-descriptions nzTitle="📄 订单信息" nzBordered>
+  <nz-descriptions nzTitle="📋 订单信息" nzBordered>
     <nz-descriptions-item nzTitle="🆔 订单ID">{{ order.id }}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="📋 订单号">{{ order.orderNumber }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="📊 订单号">{{ order.orderNumber }}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="🎯 订单状态">
       <nz-tag [nzColor]="getStatusColor(order.status)">{{ order.status | titlecase }}</nz-tag>
+      <nz-spin *ngIf="order.status === 'TICKETING_IN_PROGRESS'" nzSimple [nzSize]="'small'" style="margin-left: 8px;"></nz-spin>
     </nz-descriptions-item>
-    <nz-descriptions-item nzTitle="💰 订单金额" nzSpan="2">{{ order.amount | currency:'CNY' }}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="🕐 创建时间">{{ order.creationDate | date:'full' }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="💰 订单金额">{{ order.amount | currency:'CNY' }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="🕐 创建时间">{{ order.creationDate | date:'yyyy-MM-dd HH:mm:ss' }}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="👤 下单用户" *ngIf="order.user">
       {{ order.user.username }} (ID: {{ order.user.id }})
     </nz-descriptions-item>
@@ -58,7 +60,7 @@
 </div>
 
 <ng-template #loading>
-  <div class="page-container" style="display: flex; justify-content: center; align-items: center; color: white;">
-    <nz-spin nzSize="large" nzTip="加载中..."></nz-spin>
+  <div class="page-container" style="display: flex; justify-content: center; align-items: center; min-height: 400px;">
+    <nz-spin nzSize="large" nzTip="订单信息加载中..."></nz-spin>
   </div>
 </ng-template>
