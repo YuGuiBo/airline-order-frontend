@@ -1,29 +1,45 @@
 <div class="page-container">
   <div class="page-header">
-    <h1>订单列表</h1>
-    <button nz-button nzType="default" (click)="logout()">退出登录</button>
+    <div class="header-content">
+      <h1>📊 订单管理</h1>
+      <div class="header-subtitle">航空订单管理系统</div>
+    </div>
+    <button nz-button nzType="default" (click)="logout()">
+      <span nz-icon nzType="logout" style="margin-right: 4px;"></span>
+      退出登录
+    </button>
   </div>
   
-  <nz-table #basicTable [nzData]="(orders$ | async)!" [nzLoading]="!(orders$ | async)">
+  <nz-table #basicTable [nzData]="(orders$ | async)!" [nzLoading]="!(orders$ | async)" 
+            nzSize="middle" nzShowSizeChanger [nzPageSize]="10">
     <thead>
       <tr>
-        <th>订单号</th>
-        <th>状态</th>
-        <th>金额</th>
-        <th>创建日期</th>
-        <th>操作</th>
+        <th>📋 订单号</th>
+        <th>🎯 状态</th>
+        <th>💰 金额</th>
+        <th>🕐 创建日期</th>
+        <th>⚡ 操作</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td>{{ data.orderNumber }}</td>
         <td>
-          <nz-tag [nzColor]="getStatusColor(data.status)">{{ data.status | titlecase }}</nz-tag>
+          <strong>{{ data.orderNumber }}</strong>
         </td>
-        <td>{{ data.amount | currency:'CNY' }}</td>
+        <td>
+          <nz-tag [nzColor]="getStatusColor(data.status)">
+            {{ data.status | titlecase }}
+          </nz-tag>
+        </td>
+        <td>
+          <span class="amount">{{ data.amount | currency:'CNY' }}</span>
+        </td>
         <td>{{ data.creationDate | date:'yyyy-MM-dd HH:mm' }}</td>
         <td>
-          <a [routerLink]="['/orders', data.id]">查看详情</a>
+          <a [routerLink]="['/orders', data.id]">
+            <span nz-icon nzType="eye" style="margin-right: 4px;"></span>
+            查看详情
+          </a>
         </td>
       </tr>
     </tbody>
